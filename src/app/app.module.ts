@@ -10,7 +10,7 @@ import {APP_ROUTES} from './app.routes';
 import {ContactListComponent} from './contact-list.component';
 import {ContactDetailsComponent} from './contact-details.component';
 import {HttpModule} from '@angular/http';
-import {ApiEndpoints} from './api-endpoints';
+import {API_ENDPOINT} from './app.tokens';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactListComponent, ContactDetailsComponent],
@@ -24,7 +24,9 @@ import {ApiEndpoints} from './api-endpoints';
   ],
   bootstrap: [ContactsAppComponent],
   providers: [
-    ApiEndpoints,
+    {
+      provide: API_ENDPOINT, useValue: "http://localhost:4201/api"
+    }
   ]
 })
 export class ContactsModule {
