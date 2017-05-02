@@ -1,0 +1,7 @@
+<md-list>
+  <button (click)="changeContact()">Change first contact</button>
+  <md-list-item *ngFor="let contact of contacts; trackBy: trackByImage">
+    <img md-list-avatar [src]="contact.image" alt="picture of {{contact.name}}">
+    <h3 md-line>{{contact.name}}</h3>
+  </md-list-item>
+</md-list>
