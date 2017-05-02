@@ -10,4 +10,9 @@ export class ContactsService {
   getContacts(): Contact[] {
     return CONTACT_DATA;
   }
+
+  getContact(id: number): Contact {
+    const match = this.getContacts().find((contact) => contact.id === id);
+    return match;
+  }
 }
