@@ -1,3 +1,19 @@
+export const replacementContact = {
+  id: 0,
+  name: 'Herr Austausch',
+  email: 'christoph@thoughtram.io',
+  phone: '+49 000 1111',
+  birthday: '1984-01-02',
+  website: 'thoughtram.io',
+  image: '/assets/images/0.jpg',
+  address: {
+    street: 'thoughtram road 1',
+    zip: '65222',
+    city: 'Hanover',
+    country: 'Germany'
+  }
+};
+
 export const CONTACT_DATA = [
     {
         id: 0,
