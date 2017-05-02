@@ -15,5 +15,9 @@ export const APP_ROUTES: Routes = [
   {
     path: "contacts/:id",
     component: ContactDetailsComponent,
+  },
+  {
+    path: "**",
+    redirectTo: "/",
   }
 ];

@@ -3,8 +3,8 @@ let bodyParser = require('body-parser');
 let express = require('express');
 let cors = require('cors');
 
-let multipleResponse = (items) => { return { items: items } };
-let singleResponse = (item) => { return { item: item } };
+let multipleResponse = (items) => { return { contacts: items } };
+let singleResponse = (item) => { return { contact: item } };
 let getNextId = () => db.length;
 
 let isContact = (contact) => contact.name !== undefined;
@@ -26,7 +26,7 @@ if (unorderedResponse) {
 let app = express();
 
 app.use(cors());
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 app.get('/api/contacts', function (req, res) {
   res.json(multipleResponse(db));
@@ -49,7 +49,7 @@ app.get('/api/search', function (req, res) {
   let text = req.query.text;
   let matches = db.filter(contact => contact.name
     .toLowerCase().indexOf(text.toLowerCase()) > -1);
-  
+
   if (unorderedResponse && delayedRequest) {
     console.log(`Serving delayed for: ${text}`);
     setTimeout(() => res.json(multipleResponse(matches)), 2000)

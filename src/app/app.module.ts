@@ -9,6 +9,8 @@ import { ContactsAppComponent } from './app.component';
 import {APP_ROUTES} from './app.routes';
 import {ContactListComponent} from './contact-list.component';
 import {ContactDetailsComponent} from './contact-details.component';
+import {HttpModule} from '@angular/http';
+import {ApiEndpoints} from './api-endpoints';
 
 @NgModule({
   declarations: [ContactsAppComponent, ContactListComponent, ContactDetailsComponent],
@@ -17,9 +19,13 @@ import {ContactDetailsComponent} from './contact-details.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    HttpModule,
     RouterModule.forRoot(APP_ROUTES),
   ],
-  bootstrap: [ContactsAppComponent]
+  bootstrap: [ContactsAppComponent],
+  providers: [
+    ApiEndpoints,
+  ]
 })
 export class ContactsModule {
 
