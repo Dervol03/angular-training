@@ -13,6 +13,7 @@ import 'rxjs/add/operator/race';
 import 'rxjs/add/operator/switch';
 import 'rxjs/add/operator/concatAll';
 import 'rxjs/add/operator/last';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -38,7 +39,8 @@ export class ContactListComponent implements OnInit {
     this.contacts = this.terms$.debounceTime(200)
                         .distinctUntilChanged()
                         .switchMap((searchTerm) => this.contactsService.searchContact(searchTerm))
-                        .merge(this.contactsService.getContacts());
+                        .merge(this.contactsService.getContacts()
+                                                   .takeUntil(this.terms$));
   }
 
 

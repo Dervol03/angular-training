@@ -12,7 +12,7 @@ export class ContactsService {
 
   getContacts(): Observable<Contact[]> {
     return this.http.get(`${this.apiEndpoint}/contacts`)
-      // .delay(8000)
+      .delay(5000)
       .map((response) => response.json().contacts as Contact[]);
   }
 
