@@ -25,4 +25,9 @@ export class ContactsService {
     return this.http.put(url, contact)
                     .map((response) => response.json().contact as Contact);
   }
+
+  searchContact(name: string): Observable<Contact[]> {
+    const url = `${this.apiEndpoint}/search?text=${name}`;
+    return this.http.get(url).map((response) => response.json().contacts as Contact[]);
+  }
 }

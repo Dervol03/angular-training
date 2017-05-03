@@ -1,6 +1,12 @@
+<md-toolbar>
+  <md-input-container dividerColor="accent" class="trm-search-container">
+    <input mdInput (input)="search($event.target.value)">
+  </md-input-container>
+  <md-icon color="accent">search</md-icon>
+</md-toolbar>
 <md-list>
   <button (click)="changeContact()">Change first contact</button>
-  <a md-list-item  *ngFor="let contact of contacts; trackBy: trackByImage"
+  <a md-list-item  *ngFor="let contact of contacts | async; trackBy: trackByImage"
      [routerLink]="['/contacts', contact.id]">
 
     <img md-list-avatar [src]="contact.image" alt="picture of {{contact.name}}">
