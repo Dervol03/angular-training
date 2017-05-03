@@ -4,7 +4,6 @@ import {Http} from '@angular/http';
 import "rxjs/add/operator/map";
 import {Observable} from 'rxjs/Observable';
 import {API_ENDPOINT} from './app.tokens';
-import {assign} from 'rxjs/util/assign';
 
 @Injectable()
 export class ContactsService {
