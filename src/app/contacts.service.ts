@@ -20,4 +20,11 @@ export class ContactsService {
                     .map((response) => response.json())
                     .map((data) => data.contact);
   }
+
+  updateContact(contact: Contact): Observable<Contact> {
+    const url = `${this.apiEndpoint}/contacts/${contact.id}`;
+    return this.http.put(url, contact)
+                    .map((response) => response.json())
+                    .map((data) => data.contacts as Contact);
+  }
 }

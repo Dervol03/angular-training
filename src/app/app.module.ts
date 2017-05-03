@@ -11,14 +11,21 @@ import {ContactListComponent} from './contact-list.component';
 import {ContactDetailsComponent} from './contact-details.component';
 import {HttpModule} from '@angular/http';
 import {API_ENDPOINT} from './app.tokens';
+import { ContactEditComponent } from './contact-edit.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactListComponent, ContactDetailsComponent],
+  declarations: [
+    ContactsAppComponent,
+    ContactListComponent,
+    ContactDetailsComponent,
+    ContactEditComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    FormsModule,
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
   ],
