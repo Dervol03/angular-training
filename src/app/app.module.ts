@@ -13,13 +13,15 @@ import {HttpModule} from '@angular/http';
 import {API_ENDPOINT} from './app.tokens';
 import { ContactEditComponent } from './contact-edit.component';
 import {FormsModule} from '@angular/forms';
+import { ContactDetailsViewComponent } from './contact-details-view.component';
 
 @NgModule({
   declarations: [
     ContactsAppComponent,
     ContactListComponent,
     ContactDetailsComponent,
-    ContactEditComponent],
+    ContactEditComponent,
+    ContactDetailsViewComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

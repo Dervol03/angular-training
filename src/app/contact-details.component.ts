@@ -1,30 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import { Location } from "@angular/common";
-import { ActivatedRoute } from "@angular/router";
-import {ContactsService} from './contacts.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Contact} from './models/contact';
 
 @Component({
   selector: 'trm-contacts-detail',
   templateUrl: './contact-details.component.html',
 })
-export class ContactDetailsComponent implements OnInit {
-  contact: Contact;
-
-  constructor(private route: ActivatedRoute,
-              private contactService: ContactsService,
-              private location: Location) {}
-
-  ngOnInit(): void {
-    // this.route.params does exist, but returns an observable, instead of a value
-    // + turns the ID into a number (as it is provided as string by the route)
-    let id = this.route.snapshot.params["id"];
-    this.contactService
-        .getContact(id)
-        .subscribe((contact) => this.contact = contact);
-  }
-
-  goBack():void {
-    this.location.back();
-  }
+export class ContactDetailsComponent {
+  @Input() contact: Contact;
+  @Output() edit = new EventEmitter<Contact>();
+  @Output() back = new EventEmitter();
 }
