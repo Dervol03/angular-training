@@ -26,10 +26,14 @@ export class ContactEditComponent implements OnInit {
 
   save(contact: Contact): void {
     this.contactService.updateContact(contact)
-      .subscribe(() => this.router.navigate(['contacts', contact.id]))
+      .subscribe(() => this.goToDetails(contact));
   }
 
   cancel(contact: Contact): void {
+    this.goToDetails(contact);
+  }
+
+  private goToDetails(contact: Contact): void {
     this.router.navigate(['contacts', contact.id]);
   }
 }
