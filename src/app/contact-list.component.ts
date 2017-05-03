@@ -6,6 +6,13 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/operator/merge'
+import 'rxjs/add/operator/combineAll';
+import 'rxjs/add/operator/race';
+import 'rxjs/add/operator/switch';
+import 'rxjs/add/operator/concatAll';
+import 'rxjs/add/operator/last';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -15,7 +22,8 @@ export class ContactListComponent implements OnInit {
   contacts: Observable<Contact[]>;
   private terms$ = new Subject<string>();
 
-  constructor(private contactsService: ContactsService) {}
+  constructor(private contactsService: ContactsService) {
+  }
 
   trackByImage(image: string, contact: Contact): string {
     return contact.image;
@@ -26,13 +34,12 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contacts = this.contactsService.getContacts();
-    this.terms$.debounceTime(200)
-               .distinctUntilChanged()
-               .subscribe((searchTerm) => this.search(searchTerm));
+    // apply switchMap on the searchTerm. When a new searchTerm comes in, it unsubscribes from the previous getContacts() Oberservable.
+    this.contacts = this.terms$.debounceTime(200)
+                        .distinctUntilChanged()
+                        .switchMap((searchTerm) => this.contactsService.searchContact(searchTerm))
+                        .merge(this.contactsService.getContacts());
   }
 
-  search(value: string): void {
-    this.contacts = this.contactsService.searchContact(value);
-  }
+
 }

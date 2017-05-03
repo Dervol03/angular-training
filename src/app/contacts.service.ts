@@ -2,6 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {Contact} from './models/contact';
 import {Http} from '@angular/http';
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/delay";
 import {Observable} from 'rxjs/Observable';
 import {API_ENDPOINT} from './app.tokens';
 
@@ -11,7 +12,8 @@ export class ContactsService {
 
   getContacts(): Observable<Contact[]> {
     return this.http.get(`${this.apiEndpoint}/contacts`)
-                    .map((response) => response.json().contacts as Contact[]);
+      // .delay(8000)
+      .map((response) => response.json().contacts as Contact[]);
   }
 
   getContact(id: string): Observable<Contact> {
