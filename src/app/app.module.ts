@@ -14,6 +14,8 @@ import {API_ENDPOINT} from './app.tokens';
 import { ContactEditComponent } from './contact-edit.component';
 import {FormsModule} from '@angular/forms';
 import { ContactDetailsViewComponent } from './contact-details-view.component';
+import { TabsComponent } from './tabs/tabs.component';
+import {TabComponent} from './tabs/tab.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ContactDetailsViewComponent } from './contact-details-view.component';
     ContactListComponent,
     ContactDetailsComponent,
     ContactEditComponent,
-    ContactDetailsViewComponent],
+    ContactDetailsViewComponent,
+    TabComponent,
+    TabsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
