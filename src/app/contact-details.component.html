@@ -6,20 +6,28 @@
       <md-card-subtitle>{{contact.email}}</md-card-subtitle>
     </md-card-title-group>
     <md-card-content>
-      <dl>
-        <dt>Phone:</dt>
-        <dd>{{contact.phone}}</dd>
-        <dt>Website:</dt>
-        <dd>{{contact.website}}</dd>
-        <dt>Birthday:</dt>
-        <dd>{{contact.birthday}}</dd>
-        <dt>Street:</dt>
-        <dd>{{contact.address.street}}</dd>
-        <dt>Zip:</dt>
-        <dd>{{contact.address.zip}}</dd>
-        <dt>City:</dt>
-        <dd>{{contact.address.city}}</dd>
-      </dl>
+      <md-tab-group>
+        <md-tab label="Personal">
+          <dl>
+            <dt>Phone:</dt>
+            <dd>{{contact.phone}}</dd>
+            <dt>Website:</dt>
+            <dd>{{contact.website}}</dd>
+            <dt>Birthday:</dt>
+            <dd>{{contact.birthday}}</dd>
+          </dl>
+        </md-tab>
+        <md-tab label="Address">
+          <dl>
+            <dt>Street:</dt>
+            <dd>{{contact.address.street}}</dd>
+            <dt>Zip:</dt>
+            <dd>{{contact.address.zip}}</dd>
+            <dt>City:</dt>
+            <dd>{{contact.address.city}}</dd>
+          </dl>
+        </md-tab>
+      </md-tab-group>
     </md-card-content>
     <md-card-actions fxLayout fxLayoutAlign="center center">
       <a md-button title="Go back to list" (click)="back.emit()">Go Back</a>

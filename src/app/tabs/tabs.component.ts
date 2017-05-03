@@ -12,7 +12,7 @@ export class TabsComponent implements AfterContentInit {
   constructor() { }
 
   ngAfterContentInit(): void {
-    this.tabs.first.selected = true;
+    this.select(this.tabs.first)
   }
 
   select(selectedTab: TabComponent): void {

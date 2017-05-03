@@ -6,8 +6,8 @@
       <md-card-subtitle>{{contact.email}}</md-card-subtitle>
     </md-card-title-group>
     <md-card-content>
-      <trm-tabs>
-        <trm-tab title="Personal">
+      <md-tab-group>
+        <md-tab label="Personal">
 
           <md-input-container fxFlex>
             <input mdInput placeholder="Name" name="name" [(ngModel)]="contact.name">
@@ -24,8 +24,8 @@
           <md-input-container fxFlex>
             <input mdInput placeholder="Birthday" name="birthday" type="date" [(ngModel)]="contact.birthday">
           </md-input-container>
-        </trm-tab>
-        <trm-tab title="Address">
+        </md-tab>
+        <md-tab label="Address">
           <div fxLayout="column">
             <fieldset fxLayout="column">
               <legend>Address</legend>
@@ -40,8 +40,8 @@
               </md-input-container>
             </fieldset>
           </div>
-        </trm-tab>
-      </trm-tabs>
+        </md-tab>
+      </md-tab-group>
     </md-card-content>
     <md-card-actions fxLayout fxLayoutAlign="center center">
       <button md-button (click)="save(contact)" title="Save contact">Save</button>
