@@ -37,14 +37,15 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const updateContactObs = this.eventBus.observe("updateContactEvent")
+                                          .switchMap((updatedContact) => this.contactsService.getContacts());
     // apply switchMap on the searchTerm. When a new searchTerm comes in, it unsubscribes from the previous getContacts() Oberservable.
     this.contacts = this.terms$.debounceTime(200)
                         .distinctUntilChanged()
                         .switchMap((searchTerm) => this.contactsService.searchContact(searchTerm))
                         .merge(this.contactsService.getContacts()
-                        .takeUntil(this.terms$));
+                                                   .takeUntil(this.terms$))
+                        .merge(updateContactObs);
     this.eventBus.emit("titleUpdateEvent", "Contacts");
   }
-
-
 }

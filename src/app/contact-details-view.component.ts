@@ -20,13 +20,14 @@ export class ContactDetailsViewComponent implements OnInit {
   ngOnInit(): void {
     // this.route.params does exist, but returns an observable, instead of a value
     // + turns the ID into a number (as it is provided as string by the route)
-    let id = this.route.snapshot.params["id"];
-    this.contactService
-      .getContact(id)
-      .subscribe((contact) => {
-          this.contact = contact;
-          this.eventBus.emit("titleUpdateEvent", contact.name);
-      });
+    this.route.params.subscribe((params) => {
+      this.contactService
+        .getContact(params.id)
+        .subscribe((contact) => {
+            this.contact = contact;
+            this.eventBus.emit("titleUpdateEvent", contact.name);
+        });
+    });
   }
 
   editContact(contact: Contact): void {

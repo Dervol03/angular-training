@@ -17,6 +17,8 @@ import { ContactDetailsViewComponent } from './contact-details-view.component';
 import { TabsComponent } from './tabs/tabs.component';
 import {TabComponent} from './tabs/tab.component';
 import {EventBusService} from './event-bus.service';
+import { DashboardComponent } from './dashboard.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {EventBusService} from './event-bus.service';
     ContactEditComponent,
     ContactDetailsViewComponent,
     TabComponent,
-    TabsComponent],
+    TabsComponent,
+    DashboardComponent,
+    AboutComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

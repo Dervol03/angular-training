@@ -31,7 +31,10 @@ export class ContactEditComponent implements OnInit {
 
   save(contact: Contact): void {
     this.contactService.updateContact(contact)
-      .subscribe(() => this.goToDetails(contact));
+      .subscribe((updatedContact) =>  {
+        this.eventBus.emit("updateContactEvent", updatedContact);
+        this.goToDetails(contact);
+      });
   }
 
   cancel(contact: Contact): void {
