@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Contact} from './models/contact';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactsService} from './contacts.service';
+import {EventBusService} from './event-bus.service';
 
 @Component({
   selector: 'trm-contact-details-view',
@@ -13,7 +14,8 @@ export class ContactDetailsViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private contactService: ContactsService,
-              private router: Router) {}
+              private router: Router,
+              private eventBus: EventBusService) {}
 
   ngOnInit(): void {
     // this.route.params does exist, but returns an observable, instead of a value
@@ -21,7 +23,10 @@ export class ContactDetailsViewComponent implements OnInit {
     let id = this.route.snapshot.params["id"];
     this.contactService
       .getContact(id)
-      .subscribe((contact) => this.contact = contact);
+      .subscribe((contact) => {
+          this.contact = contact;
+          this.eventBus.emit("titleUpdateEvent", contact.name);
+      });
   }
 
   editContact(contact: Contact): void {

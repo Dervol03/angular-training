@@ -14,6 +14,7 @@ import 'rxjs/add/operator/switch';
 import 'rxjs/add/operator/concatAll';
 import 'rxjs/add/operator/last';
 import 'rxjs/add/operator/takeUntil';
+import {EventBusService} from './event-bus.service';
 
 @Component({
   selector: 'trm-contacts-list',
@@ -23,7 +24,8 @@ export class ContactListComponent implements OnInit {
   contacts: Observable<Contact[]>;
   private terms$ = new Subject<string>();
 
-  constructor(private contactsService: ContactsService) {
+  constructor(private contactsService: ContactsService,
+              private eventBus: EventBusService) {
   }
 
   trackByImage(image: string, contact: Contact): string {
@@ -40,7 +42,8 @@ export class ContactListComponent implements OnInit {
                         .distinctUntilChanged()
                         .switchMap((searchTerm) => this.contactsService.searchContact(searchTerm))
                         .merge(this.contactsService.getContacts()
-                                                   .takeUntil(this.terms$));
+                        .takeUntil(this.terms$));
+    this.eventBus.emit("titleUpdateEvent", "Contacts");
   }
 
 
