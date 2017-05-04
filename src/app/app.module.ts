@@ -11,7 +11,7 @@ import {ContactListComponent} from './contact-list.component';
 import {ContactDetailsComponent} from './contact-details.component';
 import {HttpModule} from '@angular/http';
 import {API_ENDPOINT} from './app.tokens';
-import { ContactEditComponent } from './contact-edit.component';
+import {CONFIRM_EDIT_EXIT, confirmEditExit, ContactEditComponent} from './contact-edit.component';
 import {FormsModule} from '@angular/forms';
 import { ContactDetailsViewComponent } from './contact-details-view.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -44,6 +44,9 @@ import { AboutComponent } from './about/about.component';
   providers: [
     {
       provide: API_ENDPOINT, useValue: "http://localhost:4201/api"
+    },
+    {
+      provide: CONFIRM_EDIT_EXIT, useValue: confirmEditExit,
     },
     EventBusService,
   ]

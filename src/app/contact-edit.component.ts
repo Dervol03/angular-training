@@ -1,9 +1,13 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, InjectionToken, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactsService} from './contacts.service';
 import {Contact} from './models/contact';
-import {API_ENDPOINT} from './app.tokens';
 import {EventBusService} from './event-bus.service';
+
+export const CONFIRM_EDIT_EXIT = new InjectionToken("confirmEditExit");
+export const confirmEditExit = (component: ContactEditComponent ) => {
+  return component.usesAction() ? true : window.confirm('Navigate away without saving?');
+};
 
 @Component({
   selector: 'trm-contact-edit-component',
@@ -11,6 +15,7 @@ import {EventBusService} from './event-bus.service';
 })
 export class ContactEditComponent implements OnInit {
   private contact: Contact;
+  private _usesAction: boolean;
 
   constructor(private route: ActivatedRoute,
               private contactService: ContactsService,
@@ -30,6 +35,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   save(contact: Contact): void {
+    this._usesAction = true;
     this.contactService.updateContact(contact)
       .subscribe((updatedContact) =>  {
         this.eventBus.emit("updateContactEvent", updatedContact);
@@ -38,7 +44,14 @@ export class ContactEditComponent implements OnInit {
   }
 
   cancel(contact: Contact): void {
+    this._usesAction = true;
     this.goToDetails(contact);
+  }
+
+  usesAction(): boolean {
+    const inUse = this._usesAction;
+    this._usesAction = null;
+    return inUse;
   }
 
   private goToDetails(contact: Contact): void {

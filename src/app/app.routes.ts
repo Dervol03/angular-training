@@ -1,6 +1,5 @@
-import {ContactListComponent} from './contact-list.component';
 import { Routes } from '@angular/router';
-import {ContactEditComponent} from './contact-edit.component';
+import {CONFIRM_EDIT_EXIT, ContactEditComponent} from './contact-edit.component';
 import {ContactDetailsViewComponent} from 'app/contact-details-view.component';
 import {AboutComponent} from './about/about.component';
 import {DashboardComponent} from './dashboard.component';
@@ -22,6 +21,7 @@ export const APP_ROUTES: Routes = [
       {
         path: 'contacts/:id/edit',
         component: ContactEditComponent,
+        canDeactivate: [CONFIRM_EDIT_EXIT]
       },
     ]
   },
