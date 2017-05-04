@@ -11,7 +11,7 @@ import {EventBusService} from './event-bus.service';
   ]
 })
 export class ContactsAppComponent implements OnInit {
-  title = 'Contacts';
+  title: string;
 
   constructor(private eventBus: EventBusService) {}
 
