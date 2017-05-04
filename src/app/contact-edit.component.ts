@@ -4,8 +4,7 @@ import {ContactsService} from './contacts.service';
 import {Contact} from './models/contact';
 import {EventBusService} from './event-bus.service';
 
-export const CONFIRM_EDIT_EXIT = new InjectionToken("confirmEditExit");
-export const confirmEditExit = (component: ContactEditComponent ) => {
+export function confirmEditExit(component: ContactEditComponent ) {
   return component.usesAction() ? true : window.confirm('Navigate away without saving?');
 };
 

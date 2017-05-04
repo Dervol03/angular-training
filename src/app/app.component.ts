@@ -6,9 +6,6 @@ import {EventBusService} from './event-bus.service';
   selector: 'trm-contacts-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [
-    ContactsService,
-  ]
 })
 export class ContactsAppComponent implements OnInit {
   title: string;

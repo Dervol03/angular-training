@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import {CONFIRM_EDIT_EXIT, ContactEditComponent} from './contact-edit.component';
+import {ContactEditComponent} from './contact-edit.component';
 import {ContactDetailsViewComponent} from 'app/contact-details-view.component';
 import {AboutComponent} from './about/about.component';
 import {DashboardComponent} from './dashboard.component';
+import {ContactResolver} from './contact.resolver';
+import {CONFIRM_EDIT_EXIT} from './app.tokens';
 
 export const APP_ROUTES: Routes = [
   {
@@ -17,6 +19,9 @@ export const APP_ROUTES: Routes = [
       {
         path: 'contacts/:id',
         component: ContactDetailsViewComponent,
+        resolve: {
+          contact: ContactResolver,
+        }
       },
       {
         path: 'contacts/:id/edit',

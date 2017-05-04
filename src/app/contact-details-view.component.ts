@@ -18,8 +18,8 @@ export class ContactDetailsViewComponent implements OnInit {
               private eventBus: EventBusService) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-              .switchMap((paramMap) => this.contactService.getContact(paramMap.get("id")))
+    this.route.data
+              .map((params) => params['contact'])
               .subscribe((contact) => {
                 this.contact = contact;
                 this.eventBus.emit("titleUpdateEvent", contact.name);

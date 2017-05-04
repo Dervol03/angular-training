@@ -10,8 +10,8 @@ import {APP_ROUTES} from './app.routes';
 import {ContactListComponent} from './contact-list.component';
 import {ContactDetailsComponent} from './contact-details.component';
 import {HttpModule} from '@angular/http';
-import {API_ENDPOINT} from './app.tokens';
-import {CONFIRM_EDIT_EXIT, confirmEditExit, ContactEditComponent} from './contact-edit.component';
+import {API_ENDPOINT, CONFIRM_EDIT_EXIT} from './app.tokens';
+import {confirmEditExit, ContactEditComponent} from './contact-edit.component';
 import {FormsModule} from '@angular/forms';
 import { ContactDetailsViewComponent } from './contact-details-view.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -19,6 +19,8 @@ import {TabComponent} from './tabs/tab.component';
 import {EventBusService} from './event-bus.service';
 import { DashboardComponent } from './dashboard.component';
 import { AboutComponent } from './about/about.component';
+import {ContactResolver} from './contact.resolver';
+import {ContactsService} from './contacts.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { AboutComponent } from './about/about.component';
       provide: CONFIRM_EDIT_EXIT, useValue: confirmEditExit,
     },
     EventBusService,
+    ContactsService,
+    ContactResolver,
   ]
 })
 export class ContactsModule {
